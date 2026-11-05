@@ -1,147 +1,147 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#09111f">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>AI Crypto Lab · Simulador</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <style>
-    :root{color-scheme:dark;--bg:#08111f;--panel:#101d30;--panel2:#14243a;--line:#263a54;--text:#eef5ff;--muted:#91a5bf;--cyan:#55d6e8;--green:#4bd6a0;--red:#ff7185;--amber:#f4c66a}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#17304a 0,transparent 42%),var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    .wrap{max-width:1100px;margin:auto;padding:22px 18px 42px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#3ac9de,#5667df);display:grid;place-items:center;font-size:21px;font-weight:800;color:#06111e}
-    h1{font-size:20px;margin:0}.sub{color:var(--muted);font-size:12px;margin-top:4px}.pill{border:1px solid #416078;border-radius:99px;padding:7px 11px;color:var(--cyan);font-size:12px}
-    .notice{margin:20px 0;background:#332a18;border:1px solid #6a542a;color:#ffe2a1;padding:12px 14px;border-radius:13px;font-size:13px;line-height:1.5}
-    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
-    .label{font-size:12px;color:var(--muted)}.value{font-size:24px;font-weight:750;margin-top:8px;letter-spacing:-.5px}.small{font-size:12px;color:var(--muted);margin-top:6px}
-    .section{margin-top:14px}.section h2{font-size:15px;margin:0 0 12px}.main-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;margin-top:14px}
-    canvas{width:100%;height:230px;display:block}.chart-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
-    .price{font-size:22px;font-weight:750}.positive{color:var(--green)}.negative{color:var(--red)}
-    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}button{border:0;border-radius:11px;padding:11px 15px;font-weight:700;font-size:13px;cursor:pointer}
-    .primary{background:var(--cyan);color:#07121f}.secondary{background:#243952;color:var(--text);border:1px solid #3b536d}.danger{background:#492635;color:#ffb3bf;border:1px solid #854354}
-    .risk-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.risk-row:last-child{border:0}
-    .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--green)}.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
-    .table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
-    .empty{color:var(--muted);text-align:center;padding:18px}.footer{color:var(--muted);font-size:11px;line-height:1.6;margin-top:16px}
-    @media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.main-grid{grid-template-columns:1fr}.value{font-size:21px}.wrap{padding:16px 13px 32px}}
-  </style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand"><div class="logo">AI</div><div><h1>AI Crypto Lab</h1><div class="sub">V1.0 · Laboratorio de simulación</div></div></div>
-    <div class="pill">● SOLO PAPER TRADING</div>
-  </header>
-  <div class="notice"><b>Modo educativo:</b> los precios y operaciones de esta versión son sintéticos (inventados por el simulador). No representa precios reales, no conecta con exchanges y no puede enviar órdenes ni generar ingresos.</div>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020"><title>AI Crypto Brain V3 · Simulador</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--p:#141e33;--p2:#1b2944;--line:#2c3d5e;--txt:#f2f5ff;--muted:#a3b1cc;--blue:#7dd3fc;--green:#4ade80;--red:#fb7185;--amber:#fbbf24}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1020,#111a30);color:var(--txt);font:14px system-ui,-apple-system,sans-serif}
+main{max-width:1100px;margin:auto;padding:20px 14px 44px}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:25px;margin:0}.sub,.muted,.small{color:var(--muted)}.sub{font-size:12px}.badge{border:1px solid #386082;border-radius:30px;padding:7px 11px;color:var(--blue);font-size:11px}
+.notice{background:#10263a;border:1px solid #31516d;border-radius:13px;padding:12px 14px;margin:16px 0;color:#d1eaff;line-height:1.5;font-size:13px}
+h2{font-size:17px;margin:22px 0 10px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.card{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}.coinrow,.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.price{font-size:23px;font-weight:750;margin:12px 0 2px}.small{font-size:11px}.positive{color:var(--green)}.negative{color:var(--red)}.amber{color:var(--amber)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px}.stat{background:var(--p2);border-radius:12px;padding:12px}.stat strong{display:block;font-size:19px;margin-top:5px}
+button{border:0;border-radius:10px;background:#2563eb;color:white;padding:11px 15px;font-weight:700}button.secondary{background:#30415f}button:disabled{opacity:.45}
+.module{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}.module:last-child{border:0}.dot{width:9px;height:9px;border-radius:50%;background:var(--green);margin-top:5px;flex:none}.dot.wait{background:var(--amber)}.dot.off{background:#64748b}
+.module b{display:block;font-size:13px}.module span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.log{max-height:250px;overflow:auto;font-size:12px;line-height:1.6}.logline{padding:6px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.tag{font-size:10px;background:#223653;border-radius:6px;padding:4px 7px;color:#c5e5ff}
+footer{color:var(--muted);font-size:11px;line-height:1.6;margin-top:20px}
+@media(max-width:480px){h1{font-size:21px}.price{font-size:20px}}
+</style></head>
+<body><main>
+<header class="head"><div><h1>AI Crypto Brain V3</h1><div class="sub">Motor modular de análisis · USD · entorno educativo</div></div><span class="badge">PAPER TRADING · SIN DINERO REAL</span></header>
+<div class="notice"><b>Importante:</b> consulta precios públicos reales de BTC, ETH y SOL, pero todas las operaciones son ficticias. No hay conexión a cuentas, claves API, depósitos ni órdenes reales. Ningún módulo puede garantizar beneficios.</div>
+<div class="row"><div><button id="refresh">Actualizar mercado</button> <button id="start">Iniciar cerebro</button> <button id="stop" class="secondary" disabled>Detener</button></div><span id="feed" class="small">Conectando…</span></div>
 
-  <section class="grid">
-    <div class="card"><div class="label">Saldo virtual</div><div class="value" id="balance">10.000,00 cr</div><div class="small">Créditos ficticios · no euros</div></div>
-    <div class="card"><div class="label">Patrimonio simulado</div><div class="value" id="equity">10.000,00 cr</div><div class="small" id="pnl">Resultado: 0,00 cr</div></div>
-    <div class="card"><div class="label">Operaciones cerradas</div><div class="value" id="trades">0</div><div class="small">Solo operaciones de prueba</div></div>
-    <div class="card"><div class="label">Estado del motor</div><div class="value" id="engine" style="font-size:18px">En pausa</div><div class="small" id="engineHint">Pulsa iniciar para simular</div></div>
-  </section>
+<h2>Mercado en tiempo real aproximado</h2><section id="market" class="grid"></section>
+<h2>Cuenta ficticia</h2><section class="stats">
+<div class="stat"><span class="small">Efectivo virtual</span><strong id="cash">$10,000.00</strong></div>
+<div class="stat"><span class="small">Valor total</span><strong id="equity">$10,000.00</strong></div>
+<div class="stat"><span class="small">Resultado total</span><strong id="pnl">$0.00</strong></div>
+<div class="stat"><span class="small">Caída máxima observada</span><strong id="dd">0.00%</strong></div>
+<div class="stat"><span class="small">Operaciones cerradas</span><strong id="trades">0</strong></div>
+<div class="stat"><span class="small">Tasa de aciertos</span><strong id="winrate">—</strong></div>
+</section>
 
-  <section class="main-grid">
-    <div class="card">
-      <div class="chart-head"><div><div class="label">Activo de demostración</div><div class="price" id="price">BTC-DEMO · 60.000,00</div></div><div class="status" id="status"><span class="dot"></span> SIMULACIÓN</div></div>
-      <canvas id="chart" width="900" height="300" aria-label="Gráfico sintético de precios"></canvas>
-      <div class="small">Serie ficticia generada localmente. No son cotizaciones de Bitcoin.</div>
-      <div class="controls">
-        <button class="primary" id="start">Iniciar simulación</button>
-        <button class="secondary" id="pause">Pausar</button>
-        <button class="danger" id="reset">Reiniciar demo</button>
-      </div>
-    </div>
-    <div class="card">
-      <h2>Protecciones activas</h2>
-      <div class="risk-row"><span>Riesgo máximo por operación</span><b>1% virtual</b></div>
-      <div class="risk-row"><span>Límite de caída de sesión</span><b>5% virtual</b></div>
-      <div class="risk-row"><span>Apalancamiento</span><b>Desactivado</b></div>
-      <div class="risk-row"><span>Órdenes reales</span><b class="positive">Bloqueadas</b></div>
-      <div class="risk-row"><span>Conexión a exchanges</span><b class="positive">Ninguna</b></div>
-      <div class="small" style="margin-top:12px">Las reglas limitan la simulación; no garantizan resultados ni eliminan el riesgo en mercados reales.</div>
-    </div>
-  </section>
-
-  <section class="section card">
-    <h2>Historial de operaciones simuladas</h2>
-    <div class="table-wrap"><table><thead><tr><th>Hora</th><th>Señal</th><th>Precio ficticio</th><th>Resultado</th><th>Motivo</th></tr></thead><tbody id="history"><tr><td colspan="5" class="empty">Todavía no hay operaciones. Inicia la simulación.</td></tr></tbody></table></div>
-  </section>
-  <div class="footer">Prototipo local V1.0. El motor utiliza una regla didáctica de medias móviles sobre datos inventados; no es una IA predictiva. La simulación solo avanza mientras esta página permanece abierta. Para instalarla como app y alojarla 24/7 hará falta publicarla después en un hosting HTTPS.</div>
-</div>
+<h2>Panel de módulos del cerebro</h2><section class="grid">
+<article class="card" id="modules"></article>
+<article class="card"><b>Estado del sistema</b><p id="brainStatus" class="small">En espera de datos suficientes.</p><p class="small">Decisión actual: <b id="decision">ESPERAR</b></p><p class="small">Última comprobación: <span id="lastcheck">—</span></p></article>
+</section>
+<h2>Diario de simulación</h2><article class="card"><div id="journal" class="log">Todavía no hay eventos.</div></article>
+<h2>Diagnóstico y límites</h2><article class="card"><div id="diagnostics" class="small">El diagnóstico aparecerá aquí.</div></article>
+<footer>
+Fuente de mercado: API pública de Coinbase Exchange. Actualización cada 60 segundos mientras esta página está abierta. Puede haber retrasos, límites de consulta o interrupciones.
+<br>El motor utiliza reglas transparentes, no una IA predictiva autónoma. Los indicadores necesitan acumular observaciones mientras la app está abierta. La simulación se detiene al cerrar la página.
+<br>Proyecto educativo. No es asesoramiento financiero ni una herramienta para operar con dinero real.
+</footer></main>
 <script>
-(() => {
-  const $ = id => document.getElementById(id);
-  const initialBalance = 10000;
-  let balance = initialBalance, price = 60000, history = [], candles = [], closes = [], position = null;
-  let timer = null, running = false, closed = 0, sessionPeak = initialBalance, halted = false;
-  for(let i=0;i<70;i++){ price *= 1+(Math.random()-.5)*.006; candles.push(price); closes.push(price); }
-  const fmt = n => n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
-  function sma(arr,n){ if(arr.length<n)return null; return arr.slice(-n).reduce((a,b)=>a+b,0)/n; }
-  function addHistory(signal, result, reason){
-    const tr=document.createElement('tr');
-    [new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),signal,fmt(price),result,reason].forEach((v,i)=>{
-      const td=document.createElement('td'); td.textContent=v;
-      if(i===1)td.className=signal==='COMPRA'?'positive':'negative';
-      if(i===3)td.className=result.startsWith('+')?'positive':result.startsWith('-')?'negative':'';
-      tr.appendChild(td);
-    });
-    if(history.length===0)$('history').innerHTML='';
-    $('history').prepend(tr); history.unshift(tr); if(history.length>12){history.pop();$('history').lastElementChild.remove();}
-  }
-  function render(){
-    const equity=balance+(position?position.qty*price:0);
-    $('balance').textContent=fmt(balance)+' cr'; $('equity').textContent=fmt(equity)+' cr';
-    const pnl=equity-initialBalance; $('pnl').textContent='Resultado: '+(pnl>=0?'+':'')+fmt(pnl)+' cr';
-    $('pnl').className='small '+(pnl>=0?'positive':'negative');
-    $('trades').textContent=closed; $('price').textContent='BTC-DEMO · '+fmt(price);
-    $('engine').textContent=halted?'Bloqueado por límite':running?'En marcha':'En pausa';
-    $('engineHint').textContent=halted?'Límite de caída alcanzado':running?'Actualizando datos ficticios':'Pulsa iniciar para simular';
-    $('status').innerHTML='<span class="dot"></span> '+(running?'SIMULANDO':'EN ESPERA');
-    draw();
-  }
-  function draw(){
-    const c=$('chart'),ctx=c.getContext('2d'),w=c.width,h=c.height,pad=24;
-    ctx.clearRect(0,0,w,h); ctx.strokeStyle='#263a54';ctx.lineWidth=1;
-    for(let i=0;i<5;i++){let y=pad+i*(h-2*pad)/4;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();}
-    const min=Math.min(...candles)*.999, max=Math.max(...candles)*1.001;
-    ctx.beginPath(); candles.forEach((v,i)=>{let x=pad+i*(w-2*pad)/(candles.length-1),y=h-pad-(v-min)/(max-min)*(h-2*pad);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
-    ctx.strokeStyle='#55d6e8';ctx.lineWidth=3;ctx.stroke();
-    ctx.fillStyle='#91a5bf';ctx.font='13px sans-serif';ctx.fillText(fmt(max),pad,14);ctx.fillText(fmt(min),pad,h-5);
-  }
-  function tick(){
-    if(halted){pause();render();return;}
-    const drift=(Math.random()-.49)*.006;
-    price=Math.max(1000,price*(1+drift)); candles.push(price);closes.push(price);
-    if(candles.length>90)candles.shift();if(closes.length>90)closes.shift();
-    const fast=sma(closes,8),slow=sma(closes,21),prevFast=sma(closes.slice(0,-1),8),prevSlow=sma(closes.slice(0,-1),21);
-    if(fast&&slow&&prevFast&&prevSlow){
-      if(!position&&prevFast<=prevSlow&&fast>slow){
-        const riskBudget=balance*.01, qty=riskBudget/(price*.025);
-        const cost=qty*price;
-        if(cost<=balance*.25){position={entry:price,qty,stop:price*.975};balance-=cost;addHistory('COMPRA','—','Cruce de medias · demo');}
-      } else if(position&&(price<=position.stop||(prevFast>=prevSlow&&fast<slow))){
-        const proceeds=position.qty*price, pnl=proceeds-position.qty*position.entry;
-        balance+=proceeds;closed++;addHistory('VENTA',(pnl>=0?'+':'')+fmt(pnl)+' cr',price<=position.stop?'Límite simulado':'Cruce de medias');
-        position=null;
-      }
-    }
-    const equity=balance+(position?position.qty*price:0);
-    sessionPeak=Math.max(sessionPeak,equity);
-    if(equity<initialBalance*.95){halted=true;running=false;clearInterval(timer);timer=null;}
-    render();
-  }
-  function start(){if(running||halted)return;running=true;timer=setInterval(tick,1400);render();}
-  function pause(){running=false;if(timer){clearInterval(timer);timer=null;}render();}
-  function reset(){pause();balance=initialBalance;price=60000;position=null;closed=0;history=[];candles=[];closes=[];halted=false;sessionPeak=initialBalance;
-    for(let i=0;i<70;i++){price*=1+(Math.random()-.5)*.006;candles.push(price);closes.push(price);}
-    $('history').innerHTML='<tr><td colspan="5" class="empty">Todavía no hay operaciones. Inicia la simulación.</td></tr>';render();}
-  $('start').addEventListener('click',start);$('pause').addEventListener('click',pause);$('reset').addEventListener('click',reset);
-  if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  render();
+(()=>{"use strict";
+const ASSETS=[{id:"BTC-USD",s:"BTC",name:"Bitcoin"},{id:"ETH-USD",s:"ETH",name:"Ethereum"},{id:"SOL-USD",s:"SOL",name:"Solana"}];
+const CFG={startingCash:10000,refreshMs:60000,feeRate:.001,slippage:.0005,maxExposure:.30,riskPerTrade:.01,dailyLossLimit:.03,stopLoss:.025,takeProfit:.05,minSamples:20};
+const S={cash:CFG.startingCash,positions:{},prices:{},samples:{BTC:[],ETH:[],SOL:[]},closed:[],running:false,timer:null,peak:CFG.startingCash,dayStart:CFG.startingCash,dayKey:new Date().toDateString(),halted:false,lastError:"",lastOk:null};
+const $=id=>document.getElementById(id), usd=n=>"$"+Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}), pct=n=>(n*100).toFixed(2)+"%";
+const modules=[
+["Conector de mercado","Consulta precios públicos; solo lectura."],["Validador de datos","Rechaza precios vacíos, negativos o no numéricos."],["Vigilante de conexión","Detecta fallos y datos demasiado antiguos."],["Motor de indicadores","Calcula SMA, EMA y RSI con observaciones recibidas."],["Analizador de tendencia","Compara medias para clasificar tendencia."],["Filtro de volatilidad","Evita decisiones con saltos anómalos."],["Generador de señales","Combina tendencia y RSI; puede decidir ESPERAR."],["Gestor de riesgo","Limita exposición y tamaño de posición ficticia."],["Protección diaria","Pausa el simulador al alcanzar el límite de pérdida."],["Cortacircuitos","Detiene nuevas operaciones si faltan datos o hay anomalías."],["Ejecutor ficticio","Simula comisiones y deslizamiento; nunca envía órdenes."],["Contabilidad de cartera","Calcula efectivo, posiciones y patrimonio virtual."],["Stops educativos","Simula stop-loss y objetivo de beneficio."],["Diario auditable","Registra decisiones, operaciones y errores."],["Analítica de resultados","Calcula aciertos, resultado y caída máxima."],["Gestor de errores","Muestra fallos y evita operar con datos inválidos."]
+];
+function moduleList(){ $("modules").innerHTML=modules.map((m,i)=>`<div class="module"><i class="dot ${i===3||i===4||i===5||i===6?"wait":""}"></i><div><b>${m[0]}</b><span>${m[1]}</span></div></div>`).join("");}
+function note(msg){let box=$("journal");if(box.textContent.includes("Todavía"))box.textContent="";let d=document.createElement("div");d.className="logline";d.textContent=new Date().toLocaleTimeString()+" · "+msg;box.prepend(d);}
+function equity(){return S.cash+ASSETS.reduce((v,a)=>v+(S.positions[a.s]?.qty||0)*(S.prices[a.s]?.price||0),0);}
+function render(){
+$("market").innerHTML=ASSETS.map(a=>{let p=S.prices[a.s];return `<article class="card"><div class="coinrow"><b>${a.name}</b><span class="tag">${a.s}/USD</span></div><div class="price">${p?usd(p.price):"Sin datos"}</div><div class="small">${p?(p.change>=0?"+":"")+p.change.toFixed(2)+"% en 24 h":"Esperando cotización"}</div><div class="small">Muestras: ${S.samples[a.s].length}</div></article>`}).join("");
+let eq=equity(), pnl=eq-CFG.startingCash;$("cash").textContent=usd(S.cash);$("equity").textContent=usd(eq);$("pnl").textContent=(pnl>=0?"+":"")+usd(pnl);$("pnl").className=pnl>=0?"positive":"negative";
+$("dd").textContent=pct(S.peak>0?(S.peak-eq)/S.peak:0);$("trades").textContent=S.closed.length;
+let wins=S.closed.filter(t=>t.pnl>0).length;$("winrate").textContent=S.closed.length?pct(wins/S.closed.length):"—";
+}
+async function getMarket(a){
+const r=await fetch(`https://api.exchange.coinbase.com/products/${a.id}/stats`,{headers:{Accept:"application/json"},cache:"no-store"});
+if(!r.ok)throw Error(a.s+" HTTP "+r.status);
+const d=await r.json(),last=Number(d.last),open=Number(d.open);
+if(!Number.isFinite(last)||last<=0||!Number.isFinite(open)||open<=0)throw Error(a.s+" datos inválidos");
+return {price:last,change:(last/open-1)*100,time:Date.now()};
+}
+function validData(p){return p&&Number.isFinite(p.price)&&p.price>0&&Date.now()-p.time<180000;}
+async function refresh(){
+$("refresh").disabled=true;$("feed").textContent="Consultando fuente pública…";
+let results=await Promise.allSettled(ASSETS.map(async a=>[a.s,await getMarket(a)])),ok=0,errs=[];
+results.forEach((r,i)=>{if(r.status==="fulfilled"){let [s,p]=r.value;S.prices[s]=p;S.samples[s].push(p.price);if(S.samples[s].length>100)S.samples[s].shift();ok++;}else{errs.push(r.reason.message);S.lastError=r.reason.message;}});
+S.lastOk=ok===3?Date.now():S.lastOk;render();
+$("feed").textContent=ok===3?"Datos recibidos · "+new Date().toLocaleTimeString():`${ok}/3 activos · ${errs.join(" / ")||"sin datos"}`;
+$("refresh").disabled=false;
+if(errs.length)note("Aviso de conexión/datos: "+errs.join("; "));
+if(S.running)brainCycle();
+}
+function sma(arr,n){if(arr.length<n)return null;let x=arr.slice(-n);return x.reduce((a,b)=>a+b,0)/n;}
+function ema(arr,n){if(arr.length<n)return null;let k=2/(n+1),v=arr.slice(0,n).reduce((a,b)=>a+b,0)/n;for(let x of arr.slice(n))v=x*k+v*(1-k);return v;}
+function rsi(arr,n=14){if(arr.length<=n)return null;let gains=0,loss=0;for(let i=arr.length-n;i<arr.length;i++){let d=arr[i]-arr[i-1];if(d>0)gains+=d;else loss-=d;}if(loss===0)return 100;return 100-100/(1+(gains/n)/(loss/n));}
+function riskAllows(amount){
+let eq=equity(),exposure=ASSETS.reduce((v,a)=>v+(S.positions[a.s]?.qty||0)*(S.prices[a.s]?.price||0),0);
+if(S.halted)return false;
+if(amount>S.cash)return false;
+if((exposure+amount)>eq*CFG.maxExposure)return false;
+let dayLoss=(S.dayStart-eq)/S.dayStart;
+if(dayLoss>=CFG.dailyLossLimit){S.halted=true;note("CORTACIRCUITOS: límite diario simulado alcanzado. Se pausa la estrategia.");return false;}
+return true;
+}
+function closePosition(s,price,reason){
+let pos=S.positions[s];if(!pos)return;
+let gross=pos.qty*price,fee=gross*CFG.feeRate,net=gross-fee,pnl=net-pos.cost;
+S.cash+=net;S.closed.push({s,pnl,time:Date.now()});delete S.positions[s];
+note(`VENTA FICTICIA ${s} · ${reason} · resultado ${pnl>=0?"+":""}${usd(pnl)} (incluye costes).`);
+}
+function paperBuy(s,price){
+let eq=equity(),amount=Math.min(S.cash,eq*CFG.riskPerTrade*5);
+if(amount<50||!riskAllows(amount))return;
+let fill=price*(1+CFG.slippage),fee=amount*CFG.feeRate,net=amount-fee,qty=net/fill;
+S.cash-=amount;S.positions[s]={qty,entry:fill,cost:amount,time:Date.now()};
+note(`COMPRA FICTICIA ${s} · inversión ${usd(amount)} · comisión incluida.`);
+}
+function brainCycle(){
+let anyReady=false,decisions=[];
+if(S.dayKey!==new Date().toDateString()){S.dayKey=new Date().toDateString();S.dayStart=equity();S.halted=false;note("Nuevo día de simulación: reinicio del límite diario.");}
+let eq=equity();S.peak=Math.max(S.peak,eq);
+if(S.lastOk===null||Date.now()-S.lastOk>180000){S.halted=true;note("CORTACIRCUITOS: no hay una actualización completa reciente.");}
+for(let a of ASSETS){
+let s=a.s,p=S.prices[s],arr=S.samples[s];if(!validData(p)){decisions.push(s+": datos no válidos");continue;}
+let pos=S.positions[s];
+if(pos){
+let ret=p.price/pos.entry-1;
+if(ret<=-CFG.stopLoss){closePosition(s,p.price,"stop educativo");continue;}
+if(ret>=CFG.takeProfit){closePosition(s,p.price,"objetivo educativo");continue;}
+}
+if(arr.length<CFG.minSamples){decisions.push(s+": acumulando muestras");continue;}
+anyReady=true;
+let fast=ema(arr,8),slow=ema(arr,20),strength=rsi(arr,14);
+let changes=arr.slice(-10).slice(1).map((v,i)=>Math.abs(v/arr.slice(-10)[i]-1));
+let vol=changes.reduce((x,y)=>x+y,0)/Math.max(1,changes.length);
+if(vol>0.025){decisions.push(s+": volatilidad elevada, esperar");continue;}
+if(!fast||!slow||strength===null){decisions.push(s+": indicadores incompletos");continue;}
+if(!pos&&fast>slow&&strength>40&&strength<68&&!S.halted){paperBuy(s,p.price);decisions.push(s+": compra simulada según reglas");}
+else if(pos&&fast<slow){closePosition(s,p.price,"cambio de tendencia");decisions.push(s+": venta simulada según reglas");}
+else decisions.push(s+": esperar");
+}
+render();$("decision").textContent=S.halted?"PAUSA DE SEGURIDAD":(anyReady?"ANÁLISIS ACTIVO":"ACUMULAR DATOS");
+$("brainStatus").textContent=S.halted?"Pausado por protección o datos. Revisa el diagnóstico.":decisions.join(" · ");
+$("lastcheck").textContent=new Date().toLocaleTimeString();
+$("diagnostics").textContent=`Datos recientes: ${S.lastOk?new Date(S.lastOk).toLocaleTimeString():"ninguno"}. Errores recientes: ${S.lastError||"ninguno"}. Exposición máxima: ${pct(CFG.maxExposure)} del patrimonio. Riesgo por entrada: aprox. ${pct(CFG.riskPerTrade)} × 5 como tamaño objetivo. Límite diario: ${pct(CFG.dailyLossLimit)}. Comisiones simuladas: ${pct(CFG.feeRate)} por operación. Deslizamiento simulado: ${pct(CFG.slippage)}.`;
+}
+$("refresh").addEventListener("click",refresh);
+$("start").addEventListener("click",()=>{if(S.running)return;S.running=true;S.halted=false;$("start").disabled=true;$("stop").disabled=false;note("Cerebro iniciado en modo de práctica.");brainCycle();refresh();S.timer=setInterval(refresh,CFG.refreshMs);});
+$("stop").addEventListener("click",()=>{S.running=false;clearInterval(S.timer);S.timer=null;$("start").disabled=false;$("stop").disabled=true;note("Cerebro detenido por el usuario.");$("decision").textContent="DETENIDO";});
+moduleList();render();refresh();setInterval(()=>{if(!S.running)refresh();},CFG.refreshMs);
+if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 })();
-</script>
-</body></html>
+</script></body></html>
