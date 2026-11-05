@@ -1,0 +1,10 @@
+{
+  "name": "AI Crypto Lab - Simulador",
+  "short_name": "Crypto Lab",
+  "description": "Simulador educativo de trading con datos sintéticos. Sin operaciones reales.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#09111f",
+  "icons": []
+}

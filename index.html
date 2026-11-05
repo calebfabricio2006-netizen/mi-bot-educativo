@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#09111f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>AI Crypto Lab · Simulador</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    :root{color-scheme:dark;--bg:#08111f;--panel:#101d30;--panel2:#14243a;--line:#263a54;--text:#eef5ff;--muted:#91a5bf;--cyan:#55d6e8;--green:#4bd6a0;--red:#ff7185;--amber:#f4c66a}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#17304a 0,transparent 42%),var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .wrap{max-width:1100px;margin:auto;padding:22px 18px 42px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#3ac9de,#5667df);display:grid;place-items:center;font-size:21px;font-weight:800;color:#06111e}
+    h1{font-size:20px;margin:0}.sub{color:var(--muted);font-size:12px;margin-top:4px}.pill{border:1px solid #416078;border-radius:99px;padding:7px 11px;color:var(--cyan);font-size:12px}
+    .notice{margin:20px 0;background:#332a18;border:1px solid #6a542a;color:#ffe2a1;padding:12px 14px;border-radius:13px;font-size:13px;line-height:1.5}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+    .label{font-size:12px;color:var(--muted)}.value{font-size:24px;font-weight:750;margin-top:8px;letter-spacing:-.5px}.small{font-size:12px;color:var(--muted);margin-top:6px}
+    .section{margin-top:14px}.section h2{font-size:15px;margin:0 0 12px}.main-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;margin-top:14px}
+    canvas{width:100%;height:230px;display:block}.chart-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+    .price{font-size:22px;font-weight:750}.positive{color:var(--green)}.negative{color:var(--red)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}button{border:0;border-radius:11px;padding:11px 15px;font-weight:700;font-size:13px;cursor:pointer}
+    .primary{background:var(--cyan);color:#07121f}.secondary{background:#243952;color:var(--text);border:1px solid #3b536d}.danger{background:#492635;color:#ffb3bf;border:1px solid #854354}
+    .risk-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.risk-row:last-child{border:0}
+    .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--green)}.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+    .table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
+    .empty{color:var(--muted);text-align:center;padding:18px}.footer{color:var(--muted);font-size:11px;line-height:1.6;margin-top:16px}
+    @media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.main-grid{grid-template-columns:1fr}.value{font-size:21px}.wrap{padding:16px 13px 32px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">AI</div><div><h1>AI Crypto Lab</h1><div class="sub">V1.0 · Laboratorio de simulación</div></div></div>
+    <div class="pill">● SOLO PAPER TRADING</div>
+  </header>
+  <div class="notice"><b>Modo educativo:</b> los precios y operaciones de esta versión son sintéticos (inventados por el simulador). No representa precios reales, no conecta con exchanges y no puede enviar órdenes ni generar ingresos.</div>
+
+  <section class="grid">
+    <div class="card"><div class="label">Saldo virtual</div><div class="value" id="balance">10.000,00 cr</div><div class="small">Créditos ficticios · no euros</div></div>
+    <div class="card"><div class="label">Patrimonio simulado</div><div class="value" id="equity">10.000,00 cr</div><div class="small" id="pnl">Resultado: 0,00 cr</div></div>
+    <div class="card"><div class="label">Operaciones cerradas</div><div class="value" id="trades">0</div><div class="small">Solo operaciones de prueba</div></div>
+    <div class="card"><div class="label">Estado del motor</div><div class="value" id="engine" style="font-size:18px">En pausa</div><div class="small" id="engineHint">Pulsa iniciar para simular</div></div>
+  </section>
+
+  <section class="main-grid">
+    <div class="card">
+      <div class="chart-head"><div><div class="label">Activo de demostración</div><div class="price" id="price">BTC-DEMO · 60.000,00</div></div><div class="status" id="status"><span class="dot"></span> SIMULACIÓN</div></div>
+      <canvas id="chart" width="900" height="300" aria-label="Gráfico sintético de precios"></canvas>
+      <div class="small">Serie ficticia generada localmente. No son cotizaciones de Bitcoin.</div>
+      <div class="controls">
+        <button class="primary" id="start">Iniciar simulación</button>
+        <button class="secondary" id="pause">Pausar</button>
+        <button class="danger" id="reset">Reiniciar demo</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Protecciones activas</h2>
+      <div class="risk-row"><span>Riesgo máximo por operación</span><b>1% virtual</b></div>
+      <div class="risk-row"><span>Límite de caída de sesión</span><b>5% virtual</b></div>
+      <div class="risk-row"><span>Apalancamiento</span><b>Desactivado</b></div>
+      <div class="risk-row"><span>Órdenes reales</span><b class="positive">Bloqueadas</b></div>
+      <div class="risk-row"><span>Conexión a exchanges</span><b class="positive">Ninguna</b></div>
+      <div class="small" style="margin-top:12px">Las reglas limitan la simulación; no garantizan resultados ni eliminan el riesgo en mercados reales.</div>
+    </div>
+  </section>
+
+  <section class="section card">
+    <h2>Historial de operaciones simuladas</h2>
+    <div class="table-wrap"><table><thead><tr><th>Hora</th><th>Señal</th><th>Precio ficticio</th><th>Resultado</th><th>Motivo</th></tr></thead><tbody id="history"><tr><td colspan="5" class="empty">Todavía no hay operaciones. Inicia la simulación.</td></tr></tbody></table></div>
+  </section>
+  <div class="footer">Prototipo local V1.0. El motor utiliza una regla didáctica de medias móviles sobre datos inventados; no es una IA predictiva. La simulación solo avanza mientras esta página permanece abierta. Para instalarla como app y alojarla 24/7 hará falta publicarla después en un hosting HTTPS.</div>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const initialBalance = 10000;
+  let balance = initialBalance, price = 60000, history = [], candles = [], closes = [], position = null;
+  let timer = null, running = false, closed = 0, sessionPeak = initialBalance, halted = false;
+  for(let i=0;i<70;i++){ price *= 1+(Math.random()-.5)*.006; candles.push(price); closes.push(price); }
+  const fmt = n => n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
+  function sma(arr,n){ if(arr.length<n)return null; return arr.slice(-n).reduce((a,b)=>a+b,0)/n; }
+  function addHistory(signal, result, reason){
+    const tr=document.createElement('tr');
+    [new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),signal,fmt(price),result,reason].forEach((v,i)=>{
+      const td=document.createElement('td'); td.textContent=v;
+      if(i===1)td.className=signal==='COMPRA'?'positive':'negative';
+      if(i===3)td.className=result.startsWith('+')?'positive':result.startsWith('-')?'negative':'';
+      tr.appendChild(td);
+    });
+    if(history.length===0)$('history').innerHTML='';
+    $('history').prepend(tr); history.unshift(tr); if(history.length>12){history.pop();$('history').lastElementChild.remove();}
+  }
+  function render(){
+    const equity=balance+(position?position.qty*price:0);
+    $('balance').textContent=fmt(balance)+' cr'; $('equity').textContent=fmt(equity)+' cr';
+    const pnl=equity-initialBalance; $('pnl').textContent='Resultado: '+(pnl>=0?'+':'')+fmt(pnl)+' cr';
+    $('pnl').className='small '+(pnl>=0?'positive':'negative');
+    $('trades').textContent=closed; $('price').textContent='BTC-DEMO · '+fmt(price);
+    $('engine').textContent=halted?'Bloqueado por límite':running?'En marcha':'En pausa';
+    $('engineHint').textContent=halted?'Límite de caída alcanzado':running?'Actualizando datos ficticios':'Pulsa iniciar para simular';
+    $('status').innerHTML='<span class="dot"></span> '+(running?'SIMULANDO':'EN ESPERA');
+    draw();
+  }
+  function draw(){
+    const c=$('chart'),ctx=c.getContext('2d'),w=c.width,h=c.height,pad=24;
+    ctx.clearRect(0,0,w,h); ctx.strokeStyle='#263a54';ctx.lineWidth=1;
+    for(let i=0;i<5;i++){let y=pad+i*(h-2*pad)/4;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();}
+    const min=Math.min(...candles)*.999, max=Math.max(...candles)*1.001;
+    ctx.beginPath(); candles.forEach((v,i)=>{let x=pad+i*(w-2*pad)/(candles.length-1),y=h-pad-(v-min)/(max-min)*(h-2*pad);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+    ctx.strokeStyle='#55d6e8';ctx.lineWidth=3;ctx.stroke();
+    ctx.fillStyle='#91a5bf';ctx.font='13px sans-serif';ctx.fillText(fmt(max),pad,14);ctx.fillText(fmt(min),pad,h-5);
+  }
+  function tick(){
+    if(halted){pause();render();return;}
+    const drift=(Math.random()-.49)*.006;
+    price=Math.max(1000,price*(1+drift)); candles.push(price);closes.push(price);
+    if(candles.length>90)candles.shift();if(closes.length>90)closes.shift();
+    const fast=sma(closes,8),slow=sma(closes,21),prevFast=sma(closes.slice(0,-1),8),prevSlow=sma(closes.slice(0,-1),21);
+    if(fast&&slow&&prevFast&&prevSlow){
+      if(!position&&prevFast<=prevSlow&&fast>slow){
+        const riskBudget=balance*.01, qty=riskBudget/(price*.025);
+        const cost=qty*price;
+        if(cost<=balance*.25){position={entry:price,qty,stop:price*.975};balance-=cost;addHistory('COMPRA','—','Cruce de medias · demo');}
+      } else if(position&&(price<=position.stop||(prevFast>=prevSlow&&fast<slow))){
+        const proceeds=position.qty*price, pnl=proceeds-position.qty*position.entry;
+        balance+=proceeds;closed++;addHistory('VENTA',(pnl>=0?'+':'')+fmt(pnl)+' cr',price<=position.stop?'Límite simulado':'Cruce de medias');
+        position=null;
+      }
+    }
+    const equity=balance+(position?position.qty*price:0);
+    sessionPeak=Math.max(sessionPeak,equity);
+    if(equity<initialBalance*.95){halted=true;running=false;clearInterval(timer);timer=null;}
+    render();
+  }
+  function start(){if(running||halted)return;running=true;timer=setInterval(tick,1400);render();}
+  function pause(){running=false;if(timer){clearInterval(timer);timer=null;}render();}
+  function reset(){pause();balance=initialBalance;price=60000;position=null;closed=0;history=[];candles=[];closes=[];halted=false;sessionPeak=initialBalance;
+    for(let i=0;i<70;i++){price*=1+(Math.random()-.5)*.006;candles.push(price);closes.push(price);}
+    $('history').innerHTML='<tr><td colspan="5" class="empty">Todavía no hay operaciones. Inicia la simulación.</td></tr>';render();}
+  $('start').addEventListener('click',start);$('pause').addEventListener('click',pause);$('reset').addEventListener('click',reset);
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  render();
+})();
+</script>
+</body></html>
